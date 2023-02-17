@@ -42,9 +42,16 @@ const noticesSchema = mongoose.Schema(
       type: String,
       default: "",
     },
+    age: {
+      type: String,
+      default: "one year",
+    },
     owner: {
       type: mongoose.SchemaTypes.ObjectId,
       ref: "user",
+    },
+    favorite: {
+      type: Boolean,
     },
   },
   { versionKey: false }

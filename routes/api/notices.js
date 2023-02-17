@@ -1,9 +1,19 @@
 const express = require("express");
-const { getNotices, getNotice } = require("../../controllers/notices.controller");
 
-const moticesRouter = express.Router();
+const { auth } = require("../../middlewares/auth");
+const tryCatchWrapper = require("../../helpers/tryCatchWrapper");
 
-moticesRouter.get("/", getNotices);
-moticesRouter.get("/:noticeId", getNotice);
+const {
+  getNoticesByCategory,
+  getNoticeById,
+  addNoticeInFavorites,
+  getFavoritesNotices,
+} = require("../../controllers/notices.controller");
 
-module.exports = moticesRouter;
+const noticesRouter = express.Router();
+
+noticesRouter.get("/", getNoticesByCategory);
+noticesRouter.get("/:noticeId", getNoticeById);
+noticesRouter.patch("/:noticeId", auth, tryCatchWrapper(addNoticeInFavorites));
+noticesRouter.get("/favorites", auth, tryCatchWrapper(getFavoritesNotices));
+module.exports = noticesRouter;

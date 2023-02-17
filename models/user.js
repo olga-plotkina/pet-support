@@ -34,7 +34,6 @@ const userSchema = Schema(
       type: String,
       default: null,
     },
-    favorites: [{ type: Schema.ObjectId, ref: "notice" }],
     userPets: [{ type: Schema.ObjectId, ref: "pet" }],
   },
   { versionKey: false, timestamps: true }
