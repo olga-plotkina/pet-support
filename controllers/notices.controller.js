@@ -130,7 +130,7 @@ const getNoticeById = async (req, res, next) => {
     const notice = await service.getNoticeById(noticeId);
 
     if (!notice) {
-      throw NotFound(404);
+      throw NotFound("Notice not found");
     }
 
     const result = { ...notice, favorite: favorites.includes(notice._id) };
@@ -259,7 +259,7 @@ const addNoticeInFavorites = async (req, res, next) => {
     const user = await service.addNoticeInFavorites(noticeId, _id);
 
     if (!user) {
-      throw NotFound(404);
+      throw NotFound("User not found");
     }
 
     res.json({

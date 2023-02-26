@@ -48,7 +48,7 @@ const register = async (req, res, next) => {
       }
     */
     if (user) {
-      throw Conflict("email has already been registered");
+      throw Conflict("Email has already been registered");
     }
 
     const salt = await bcrypt.genSalt();
